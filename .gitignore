@@ -1,0 +1,11 @@
+.DS_Store
+/deploy
+database/db_backups/development
+database/db_backups/staging
+database/db_backups/production
+node_modules
+*.swp
+*.swo
+*.sw0
+*.orig
+npm-debug.log

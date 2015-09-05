@@ -1,0 +1,13 @@
+{
+  "verbose": true,
+  "watch": [
+    "www", 
+    "lib"
+  ],
+  "ignore": [
+    "node_modules",
+    "www/app",
+    "www/public",
+    "www/sass"
+  ]
+}
