@@ -1,6 +1,6 @@
 {
-  "name": "www",
-  "version": "0.0.0",
+  "name": "media",
+  "version": "0.0.1",
   "private": true,
   "scripts": {
     "start": "node ./bin/www"
