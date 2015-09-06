@@ -1,13 +1,12 @@
 {
-  "verbose": true,
+  "verbose": false,
   "watch": [
-    "www", 
+    "media", 
     "lib"
   ],
   "ignore": [
     "node_modules",
-    "www/app",
-    "www/public",
-    "www/sass"
+    "media/public",
+    "media/views"
   ]
 }
