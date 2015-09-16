@@ -1,14 +1,5 @@
 var express = require("express");
-var AWS = require("aws-sdk");
-
-// configure AWS
-// -------------
-
-var credentials = new AWS.SharedIniFileCredentials({
-  profile: "test-architecting-express"
-});
-
-AWS.config.credentials = credentials;
+var Media = require("media");
 
 // routes
 // ------
@@ -21,21 +12,18 @@ router.get("/", getFile);
 // --------------
 
 function getFile(req, res, next){
-  var file = "16-install-node-on-osx.mp4";
+  var fileId = "55f9944ed2a548c981536bb9";
 
-  var options = {
-    Bucket: "watchmecode-net",
-    Key: file
-  };
-
-  var s3 = new AWS.S3();
-
-  s3.getSignedUrl("getObject", options, function(err, url){
+  Media.File.findById(fileId, function(err, file){
     if (err) { return next(err); }
 
-    res.redirect(url);
+    file.getDownloadUrl(function(err, url){
+      if (err) { return next(err); }
+
+      res.redirect(url);
+    });
   });
-};
+}
 
 // exports
 // -------
