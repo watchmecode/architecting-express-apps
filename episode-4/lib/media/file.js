@@ -1,15 +1,6 @@
 var mongoose = require("mongoose");
 var AWS = require("aws-sdk");
 
-// configure AWS
-// -------------
-
-var credentials = new AWS.SharedIniFileCredentials({
-  profile: "test-architecting-express"
-});
-
-AWS.config.credentials = credentials;
-
 // File Schema
 // -----------
 

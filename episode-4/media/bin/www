@@ -3,14 +3,12 @@
 var app = require('../app');
 var debug = require('debug')('media:server');
 var http = require('http');
-
-var epa = require("epa").getEnvironment();
-var mongoose = require("mongoose");
+var nanit = require("nanit");
 
 var port = normalizePort(process.env.PORT || '3000');
 app.set('port', port);
 
-mongoose.connect(epa.get("mongodb"), function(err){
+nanit.initialize(function(err){
   if (err) { throw err; }
 
   var server = http.createServer(app);
