@@ -1,3 +1,9 @@
 {
-  "mongodb": "mongodb://localhost/wmc-media"
+  "mongodb": "mongodb://localhost/wmc-media",
+
+  "www": "http://watchmecode.net",
+
+  "s3": {
+    "bucket": "watchmecode-net"
+  }
 }

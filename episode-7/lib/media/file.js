@@ -1,3 +1,4 @@
+var epa = require("epa").getEnvironment();
 var mongoose = require("mongoose");
 var AWS = require("aws-sdk");
 
@@ -24,7 +25,7 @@ FileSchema.static("findByName", function(fileName, cb){
 
 FileSchema.method("getDownloadUrl", function(cb){
   var options = {
-    Bucket: "watchmecode-net",
+    Bucket: epa.get("s3").bucket,
     Key: this.name
   };
 
