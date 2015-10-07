@@ -6,22 +6,31 @@ var Media = require("media");
 
 var router = new express.Router();
 
-router.get("/", getFile);
+router.get("/:file", getFile);
+
+// params
+// ------
+
+router.param("file", function(req, res, next, fileName){
+  Media.File.findByName(fileName, function(err, file){
+    if (err) { return next(err); }
+
+    req.appData.file = file;
+    next();
+  });
+});
 
 // route handlers
 // --------------
 
 function getFile(req, res, next){
-  var fileId = "55f9944ed2a548c981536bb9";
+  var file = req.appData.file;
+  if (!file) { return next(); }
 
-  Media.File.findById(fileId, function(err, file){
+  file.getDownloadUrl(function(err, url){
     if (err) { return next(err); }
 
-    file.getDownloadUrl(function(err, url){
-      if (err) { return next(err); }
-
-      res.redirect(url);
-    });
+    res.redirect(url);
   });
 }
 

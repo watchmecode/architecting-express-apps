@@ -5,7 +5,18 @@ var AWS = require("aws-sdk");
 // -----------
 
 var FileSchema = new mongoose.Schema({
-  name: {type: String}
+  name: {type: String, index: {unique: true}}
+});
+
+// Static Methods
+// --------------
+
+FileSchema.static("findByName", function(fileName, cb){
+  var query = {
+    name: fileName
+  };
+
+  this.findOne(query, cb);
 });
 
 // File Methods
