@@ -34,6 +34,17 @@ FileSchema.method("getDownloadUrl", function(cb){
   s3.getSignedUrl("getObject", options, cb);
 })
 
+FileSchema.method("getInfo", function(cb){
+  var options = {
+    Bucket: epa.get("s3").bucket,
+    Key: this.name
+  };
+
+  var s3 = new AWS.S3();
+
+  s3.headObject(options, cb);
+});
+
 // File Model
 // ----------
 
