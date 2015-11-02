@@ -51,14 +51,28 @@ function addToMongo(files){
 
 function saveFile(file){
   var p = new Promise(function(resolve, reject){
-    var dbFile = new Media.File({
+
+    var query = {
       name: file.Key
+    };
+
+    Media.File.findOne(query, function(err, dbFile){
+      if (err) { return reject(err); }
+
+      if (file){
+        return resolve(dbFile);
+      }
+
+      dbFile = new Media.File({
+        name: file.Key
+      });
+
+      dbFile.save(function(err){
+        if (err) { return reject(err); }
+        return resolve(dbFile);
+      });
     });
 
-    dbFile.save(function(err){
-      if (err) { return reject(err); }
-      resolve(dbFile);
-    });
   });
 
   return p;
